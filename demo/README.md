@@ -61,9 +61,17 @@ HELLO=yo wassup
 ### The singularity DEF file
 Singularity containers are made from .def files.  The def file used in this demo is [Singularity.fortran](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran).  It has several sections and uses a multi-step build process.
 #### Header
-[Bootstrap](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L25): Describes the type of base container you will be using
-[From](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L26): The base container you will be using
-[Stage](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L27): This is a tag for the stage of the container build.  You can use whatever you want here.
+In a multi-stage build, you will have this header twice.
+
+
+- [Bootstrap](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L1): Describes the type of base container 
+you will be using. 
+- [From](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L2): The base container you will be using
+- [Stage](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L3): This is a tag for the stage of the 
+container build.  You can use whatever you want here. In my example, I call my first stage 
+[build](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L3) and my second stage
+[final](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L23)
+
 #### %files
 Lists files you want from the host system or from different stages.  Although there is a blank section in my
 example, you don't need to include this if there are no files.  You can specify the end location for a file 
@@ -82,12 +90,15 @@ use in this section, you should do so by using `export`, and not by setting them
 
 I get the libraries [git](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L9) and 
 [gcc-fortran](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L10), then checkout my 
-code and build the executable.  I also move the executable to a different location so that I can just [bring the executable 
-over in the second stage %files sectio]n(https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L26)
+code and build the executable.  I also move the executable to a different location so that I can just bring the executable 
+over in the second stage [%files section](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L26)
+In the second post section, I only install 
+[a few libraries](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L28)
 
 #### %environment
 Set up environment varibales that you want during the execution of the container.  Setting variables in the %environment 
-section **does not** set them for the %post section.  I update the path to include my executable.
+section **does not** set them for the %post section.  I update the 
+[path](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L32) to include my executable.
 
 #### %runscript
 A script that will be run during `singularity run` or by executing the container. 
