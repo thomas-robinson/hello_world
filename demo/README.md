@@ -57,12 +57,6 @@ HELLO=yo wassup
 
 
 ## Building a container
-### Singularity build
-
-*If you don’t have root privileges, you need to use the -f --fakeroot option*
-The system must be set up to allow you to build.  Currently (March 2021) orion and gaea do not allow `singularity build -f`.
-
-[Instructions on building this demo Fortran container](https://github.com/thomas-robinson/hello_world)
 
 ### The singularity DEF file
 Singularity containers are made from .def files.  The def file used in this demo is [Singularity.fortran](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran).  It has several sections and uses a multi-step build process.
@@ -96,4 +90,13 @@ Set up environment varibales that you want during the execution of the container
 section **does not** set them for the %post section.  I update the path to include my executable.
 
 #### %runscript
-A script that will be run during `singularity run` or by executing the container. [My script](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L35) does weird things as a demo.
+A script that will be run during `singularity run` or by executing the container. 
+[My script](https://github.com/thomas-robinson/hello_world/blob/main/Singularity.fortran#L35) does weird things as a demo.
+
+### Singularity build
+
+*If you don’t have root privileges, you need to use the -f --fakeroot option*
+The system must be set up to allow you to build.  Currently (March 2021) orion and gaea do not allow `singularity build -f`.
+
+[Instructions on building this demo Fortran container](https://github.com/thomas-robinson/hello_world)
+
