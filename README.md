@@ -15,4 +15,13 @@ singularity run fortran.sif
 export SINGULARITYENV_HELLO="Hola mundo"
 ./fortran.sif
 ```
-
+if using csh
+```csh
+singularity run fortran.sif
+./fortran.sif
+singularity exec fortran.sif hello.x
+setenv SINGULARITYENV_HELLO "yo wassup"
+singularity run fortran.sif
+setenv SINGULARITYENV_HELLO "Hola mundo"
+./fortran.sif
+```
